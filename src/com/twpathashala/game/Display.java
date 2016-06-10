@@ -18,10 +18,14 @@ class Display {
 
     private void printInFormat(Mine mine) {
         for (int i = 0; i < mine.getRows(); i++) {
-            for (int j = 0; j < mine.getColumns(); j++) {
-                System.out.print(input[i][j]);
-            }
+            iterateColumns(mine, input[i]);
             System.out.println();
+        }
+    }
+
+    private void iterateColumns(Mine mine, String[] strings) {
+        for (int j = 0; j < mine.getColumns(); j++) {
+            System.out.print(strings[j]);
         }
     }
 }

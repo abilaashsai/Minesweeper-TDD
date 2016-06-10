@@ -1,5 +1,6 @@
 package com.twpathashala.game;
 
+//Understands the Mine field
 class MinefieldInputParse {
     private final int ROW;
     private final int COLUMN;

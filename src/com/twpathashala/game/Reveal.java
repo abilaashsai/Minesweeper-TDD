@@ -45,9 +45,13 @@ class Reveal {
 
     private void initializeToInitialState() {
         for (int i = 0; i < TOTALROWS; i++) {
-            for (int j = 0; j < TotalColumn; j++) {
-                input[i][j] = INITIALSTATE;
-            }
+            iterateColumnAndSetState(i);
+        }
+    }
+
+    private void iterateColumnAndSetState(int i) {
+        for (int j = 0; j < TotalColumn; j++) {
+            input[i][j] = INITIALSTATE;
         }
     }
 
