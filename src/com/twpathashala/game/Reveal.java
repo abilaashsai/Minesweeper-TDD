@@ -8,7 +8,7 @@ class Reveal {
     private final int TotalColumn;
     private final String[][] input;
     private final String INITIALSTATE = "x";
-
+    private final String FlAG = "F";
 
     Reveal(Mine MINE) {
         this.MINE = MINE;
@@ -30,11 +30,13 @@ class Reveal {
 
     Boolean flag(int row, int column) throws GameEnd {
         String FLAG = "F";
-        if (!INITIALSTATE.equals(input[row][column]) && !input[row][column].equals(FLAG)) {
+        if (!input[row][column].equals(INITIALSTATE)) {
             return false;
         }
-        input[row][column] = FLAG;
-        count++;
+        if (MINE.exist(row, column) && !input[row][column].equals(FLAG)) {
+            input[row][column] = FLAG;
+            count++;
+        }
         checkIfClearedMineField();
         return true;
     }
@@ -62,7 +64,7 @@ class Reveal {
     }
 
     private void trackIfInInitialState(String s) {
-        if (s.equals(INITIALSTATE)) {
+        if (s.equals(INITIALSTATE) || s.equals(FlAG)) {
             count++;
         }
     }
