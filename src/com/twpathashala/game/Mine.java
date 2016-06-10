@@ -2,38 +2,58 @@ package com.twpathashala.game;
 
 //Understands the location of mine
 class Mine {
-    private String[][] set;
+    private final String[][] SET;
     private int adjacent;
 
-    Mine(String[][] set) {
-        this.set = set;
+    Mine(String[][] SET) {
+        this.SET = SET;
     }
 
     boolean exist(int row, int column) {
         adjacent = 0;
-        if (set[row][column].equals("m")) {
-            return true;
-        }
-        adjacent = 0;
-        if ((row - 1) >= 0) {
-            if (set[row - 1][column].equals("m")) {
-                adjacent++;
-            }
-        }
-        if ((row + 1) < getRows()) {
-            if (set[row + 1][column].equals("m")) {
-                adjacent++;
-            }
-        }
-        if ((column - 1) >= 0) {
-            if (set[row][column - 1].equals("m")) {
-                adjacent++;
-            }
-        }
+        if (isMine(SET[row][column])) return true;
+        addValueIfMineExistLeft(row, column);
+        addValueIfMineExistRight(row, column);
+        addValueIfMineExistTop(row, column);
+        addValueIfMineExistDown(row, column);
+        return false;
+    }
+
+    private void addValueIfMineExistDown(int row, int column) {
         if ((column + 1) < getColumns()) {
-            if (set[row][column + 1].equals("m")) {
+            if (SET[row][column + 1].equals("m")) {
                 adjacent++;
             }
+        }
+    }
+
+    private void addValueIfMineExistTop(int row, int column) {
+        if ((column - 1) >= 0) {
+            if (SET[row][column - 1].equals("m")) {
+                adjacent++;
+            }
+        }
+    }
+
+    private void addValueIfMineExistRight(int row, int column) {
+        if ((row + 1) < getRows()) {
+            if (SET[row + 1][column].equals("m")) {
+                adjacent++;
+            }
+        }
+    }
+
+    private void addValueIfMineExistLeft(int row, int column) {
+        if ((row - 1) >= 0) {
+            if (SET[row - 1][column].equals("m")) {
+                adjacent++;
+            }
+        }
+    }
+
+    private boolean isMine(String s) {
+        if (s.equals("m")) {
+            return true;
         }
         return false;
     }
@@ -43,14 +63,14 @@ class Mine {
     }
 
     int getRows() {
-        return set.length;
+        return SET.length;
     }
 
     int getColumns() {
-        return set[0].length;
+        return SET[0].length;
     }
 
     String[][] getInput() {
-        return set;
+        return SET;
     }
 }

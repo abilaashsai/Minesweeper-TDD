@@ -12,7 +12,7 @@ public class DisplayTest {
         Reveal reveal = new Reveal(mine);
         reveal.open(0, 0);
         Display display = new Display();
-        assertTrue(display.printReveal(mine,reveal));
+        assertTrue(display.revealElements(mine,reveal));
 
     }
     @Test
@@ -20,6 +20,6 @@ public class DisplayTest {
         String[][] set = new String[][]{{"x", "x", "x"}, {"x", "m", "x"}, {"x", "x", "x"}};
         Mine mine = new Mine(set);
         Display display = new Display();
-        assertTrue(display.printMine(mine));
+        assertTrue(display.mineElements(mine));
     }
 }

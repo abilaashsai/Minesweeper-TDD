@@ -1,26 +1,27 @@
 package com.twpathashala.game;
 
-//Understands to print
+//Understands how to print
 class Display {
-    boolean printMine(Mine mine) {
-        String[][] set = mine.getInput();
-        for (int i = 0; i < mine.getRows(); i++) {
-            for (int j = 0; j < mine.getColumns(); j++) {
-                System.out.print(set[i][j]);
-            }
-            System.out.println();
-        }
+    private String[][] input;
+
+    boolean mineElements(Mine mine) {
+        input = mine.getInput();
+        printInFormat(mine);
         return true;
     }
 
-    boolean printReveal(Mine mine, Reveal reveal) {
-        String[][] set = reveal.getInput();
+    boolean revealElements(Mine mine, Reveal reveal) {
+        input = reveal.getInput();
+        printInFormat(mine);
+        return true;
+    }
+
+    private void printInFormat(Mine mine) {
         for (int i = 0; i < mine.getRows(); i++) {
             for (int j = 0; j < mine.getColumns(); j++) {
-                System.out.print(set[i][j]);
+                System.out.print(input[i][j]);
             }
             System.out.println();
         }
-        return true;
     }
 }

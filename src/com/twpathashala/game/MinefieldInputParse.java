@@ -1,27 +1,29 @@
 package com.twpathashala.game;
 
 class MinefieldInputParse {
-    private int row;
-    private int column;
+    private final int ROW;
+    private final int COLUMN;
     private int k = 0;
-    private Mine mine;
 
-    MinefieldInputParse(int row, int column) {
-        this.row = row;
-        this.column = column;
+    MinefieldInputParse(int ROW, int COLUMN) {
+        this.ROW = ROW;
+        this.COLUMN = COLUMN;
     }
 
     Mine categorization(String input) {
-        String[][] output = new String[row][column];
+        String[][] output = new String[ROW][COLUMN];
         char[] letters = input.toCharArray();
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < column; j++) {
+        convertTo2DStringArray(output, letters);
+        return new Mine(output);
+    }
+
+    private void convertTo2DStringArray(String[][] output, char[] letters) {
+        for (int i = 0; i < ROW; i++) {
+            for (int j = 0; j < COLUMN; j++) {
                 output[i][j] = String.valueOf(letters[k]);
                 k++;
             }
             k++;
         }
-        mine=new Mine(output);
-        return mine;
     }
 }
