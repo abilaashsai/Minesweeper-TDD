@@ -12,7 +12,25 @@ public class UserInputParseTest {
         String[][] set = new String[][]{{"x", "x", "x"}, {"x", "m", "x"}, {"x", "x", "x"}};
         Mine mine = new Mine(set);
         Reveal reveal = new Reveal(mine);
-        UserInputParse userInputParse =new UserInputParse(reveal);
+        UserInputParse userInputParse = new UserInputParse(reveal);
         assertTrue(userInputParse.categorization("o(0,0)"));
+    }
+
+    @Test(expected = GameEnd.class)
+    public void categorizationShouldThrowExceptionForInvalidInput() throws GameEnd {
+        String[][] set = new String[][]{{"x", "x", "x"}, {"x", "m", "x"}, {"x", "x", "x"}};
+        Mine mine = new Mine(set);
+        Reveal reveal = new Reveal(mine);
+        UserInputParse userInputParse = new UserInputParse(reveal);
+        userInputParse.categorization("o(0,0");
+    }
+
+    @Test(expected = GameEnd.class)
+    public void categorizationShouldThrowExceptionForNullInput() throws GameEnd {
+        String[][] set = new String[][]{{"x", "x", "x"}, {"x", "m", "x"}, {"x", "x", "x"}};
+        Mine mine = new Mine(set);
+        Reveal reveal = new Reveal(mine);
+        UserInputParse userInputParse = new UserInputParse(reveal);
+        userInputParse.categorization(null);
     }
 }

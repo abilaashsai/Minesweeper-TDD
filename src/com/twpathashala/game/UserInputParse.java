@@ -11,6 +11,9 @@ class UserInputParse {
     }
 
     Boolean categorization(String input) throws GameEnd {
+        if (input == null || input.length() != 6) {
+            throw new GameEnd("Enter Valid Input");
+        }
         char[] letters = input.toCharArray();
         row = Integer.parseInt(String.valueOf(letters[2]));
         column = Integer.parseInt(String.valueOf(letters[4]));
