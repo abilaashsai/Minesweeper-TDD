@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 
 //Understands the game progress until game is over
 public class Main {
+    private final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
     public static void main(String Args[]) throws IOException, GameEnd {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String string;
@@ -21,10 +23,11 @@ public class Main {
         Reveal reveal = new Reveal(mine);
         Display display = new Display();
         display.revealElements(mine, reveal);
-        readInputUntilGameOver(bufferedReader, mine, reveal, display);
+        Main main = new Main();
+        main.readInputUntilGameOver(mine, reveal, display);
     }
 
-    private static void readInputUntilGameOver(BufferedReader bufferedReader, Mine mine, Reveal reveal, Display display) throws IOException, GameEnd {
+    private void readInputUntilGameOver(Mine mine, Reveal reveal, Display display) throws IOException, GameEnd {
         String string;
         while (true) {
             System.out.println("Enter option :");
