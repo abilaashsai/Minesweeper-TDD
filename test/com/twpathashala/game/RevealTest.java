@@ -41,7 +41,7 @@ public class RevealTest {
     }
 
     @Test(expected = GameEnd.class)
-    public void openShouldReturn1When1_0IsPassed1() throws GameEnd {
+    public void endGameWhenAllMinesAreFlagedCorrectly() throws GameEnd {
         String[][] set = new String[][]{{"x", "x", "x"}, {"x", "m", "x"}, {"x", "x", "x"}};
         Mine mine = new Mine(set);
         Reveal reveal = new Reveal(mine);
@@ -57,7 +57,7 @@ public class RevealTest {
     }
 
     @Test(expected = GameEnd.class)
-    public void openShouldReturn1When1_0IsPassed11() throws GameEnd {
+    public void endGameWhenFlagedBoxNotContainingMineOpenedAndAllBoxOpened() throws GameEnd {
         String[][] set = new String[][]{{"x", "x", "x"}, {"x", "m", "x"}, {"x", "x", "x"}};
         Mine mine = new Mine(set);
         Reveal reveal = new Reveal(mine);
@@ -74,7 +74,7 @@ public class RevealTest {
     }
 
     @Test(expected = GameEnd.class)
-    public void openShouldReturn1When1_0IsPassed111() throws GameEnd {
+    public void endGameDoNotAcceptToFlagOpenedBox() throws GameEnd {
         String[][] set = new String[][]{{"x", "x", "x"}, {"x", "m", "x"}, {"x", "x", "x"}};
         Mine mine = new Mine(set);
         Reveal reveal = new Reveal(mine);
