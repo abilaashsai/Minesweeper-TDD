@@ -22,19 +22,19 @@ public class Main {
         Mine mine = minefieldInputParse.categorization(string);
         Reveal reveal = new Reveal(mine);
         Display display = new Display();
-        display.revealElements(mine, reveal);
+        display.revealElements(reveal);
         Main main = new Main();
-        main.readInputUntilGameOver(mine, reveal, display);
+        main.readInputUntilGameOver(reveal, display);
     }
 
-    private void readInputUntilGameOver(Mine mine, Reveal reveal, Display display) throws IOException, GameEnd {
+    private void readInputUntilGameOver(Reveal reveal, Display display) throws IOException, GameEnd {
         String string;
         while (true) {
             System.out.println("Enter option :");
             string = bufferedReader.readLine();
             UserInputParse userInputParse = new UserInputParse(reveal);
             if (userInputParse.categorization(string)) {
-                display.revealElements(mine, reveal);
+                display.revealElements(reveal);
             }
         }
     }

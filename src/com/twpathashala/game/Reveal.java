@@ -5,7 +5,7 @@ class Reveal {
     private final Mine MINE;
     private int count = 0;
     private final int TOTALROWS;
-    private final int TotalColumn;
+    private final int TOTALCOLUMN;
     private final String[][] input;
     private final String INITIALSTATE = "x";
     private final String FlAG = "F";
@@ -13,8 +13,8 @@ class Reveal {
     Reveal(Mine MINE) {
         this.MINE = MINE;
         TOTALROWS = MINE.getRows();
-        TotalColumn = MINE.getColumns();
-        input = new String[TOTALROWS][TotalColumn];
+        TOTALCOLUMN = MINE.getColumns();
+        input = new String[TOTALROWS][TOTALCOLUMN];
         initializeToInitialState();
     }
 
@@ -33,16 +33,12 @@ class Reveal {
         if (!input[row][column].equals(INITIALSTATE)) {
             return false;
         }
-        if (MINE.exist(row, column) && !input[row][column].equals(FLAG)) {
-            input[row][column] = FLAG;
+        input[row][column] = FLAG;
+        if (MINE.exist(row, column)) {
             count++;
         }
         checkIfClearedMineField();
         return true;
-    }
-
-    String[][] getInput() {
-        return input;
     }
 
     private void initializeToInitialState() {
@@ -52,13 +48,13 @@ class Reveal {
     }
 
     private void iterateColumnAndSetState(int i) {
-        for (int j = 0; j < TotalColumn; j++) {
+        for (int j = 0; j < TOTALCOLUMN; j++) {
             input[i][j] = INITIALSTATE;
         }
     }
 
     private void checkIfClearedMineField() throws GameEnd {
-        if (count == TOTALROWS * TotalColumn) {
+        if (count == TOTALROWS * TOTALCOLUMN) {
             throw new GameEnd("Wow, you cleared the minefield ! Game over !");
         }
     }
@@ -66,6 +62,20 @@ class Reveal {
     private void trackIfInInitialState(String s) {
         if (s.equals(INITIALSTATE) || s.equals(FlAG)) {
             count++;
+        }
+    }
+
+    boolean print() {
+        for (int i = 0; i < TOTALROWS; i++) {
+            iterateColumns(input[i]);
+            System.out.println();
+        }
+        return true;
+    }
+
+    private void iterateColumns(String[] strings) {
+        for (int j = 0; j < TOTALCOLUMN; j++) {
+            System.out.print(strings[j]);
         }
     }
 }

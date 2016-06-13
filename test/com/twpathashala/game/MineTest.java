@@ -50,6 +50,6 @@ public class MineTest {
     public void getInputShouldBeSameAsInput() {
         String[][] set = new String[][]{{"x", "x", "x"}, {"x", "m", "x"}, {"x", "x", "x"}};
         Mine mine = new Mine(set);
-        assertTrue(Arrays.deepEquals(set, mine.getInput()));
+        assertTrue(mine.print());
     }
 }

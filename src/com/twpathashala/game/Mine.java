@@ -68,7 +68,17 @@ class Mine {
         return SET[0].length;
     }
 
-    String[][] getInput() {
-        return SET;
+    public boolean print() {
+        for (int i = 0; i < getRows(); i++) {
+            iterateColumns(SET[i]);
+            System.out.println();
+        }
+        return true;
+    }
+
+    private void iterateColumns(String[] strings) {
+        for (int j = 0; j < getColumns(); j++) {
+            System.out.print(strings[j]);
+        }
     }
 }

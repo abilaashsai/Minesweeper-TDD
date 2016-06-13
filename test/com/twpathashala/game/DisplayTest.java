@@ -12,7 +12,7 @@ public class DisplayTest {
         Reveal reveal = new Reveal(mine);
         reveal.open(0, 0);
         Display display = new Display();
-        assertTrue(display.revealElements(mine, reveal));
+        assertTrue(display.revealElements(reveal));
     }
 
     @Test
